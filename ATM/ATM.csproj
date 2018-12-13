@@ -1,7 +1,75 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{017D048F-1019-4290-A672-91A07964DE13}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ATM</RootNamespace>
+    <AssemblyName>ATM</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ATMachine.cs" />
+    <Compile Include="Cash\Enum\PaperNote.cs" />
+    <Compile Include="Exceptions\AmountIsNotMultipleException.cs" />
+    <Compile Include="Exceptions\AmountIsTooBigException.cs" />
+    <Compile Include="Exceptions\CannotAccessCardException.cs" />
+    <Compile Include="Exceptions\CardIsInsertedException.cs" />
+    <Compile Include="Exceptions\CardIsNotExistsException.cs" />
+    <Compile Include="Exceptions\HistoryNotFoundException.cs" />
+    <Compile Include="Exceptions\InvalidAmountException.cs" />
+    <Compile Include="Exceptions\InvalidCardNumberException.cs" />
+    <Compile Include="Exceptions\InvalidDeclaredAmountException.cs" />
+    <Compile Include="Exceptions\NotAuthorizedOperatorException.cs" />
+    <Compile Include="Exceptions\InsufficientFundsException.cs" />
+    <Compile Include="Card\CardProcessor.cs" />
+    <Compile Include="Cash\CashProcessor.cs" />
+    <Compile Include="Card\ICardProcessor.cs" />
+    <Compile Include="Cash\ICashProcessor.cs" />
+    <Compile Include="HostProcessor\IHostProcessorService.cs" />
+    <Compile Include="HostProcessor\Mock\AtmOperation.cs" />
+    <Compile Include="HostProcessor\Mock\HistoryManager.cs" />
+    <Compile Include="HostProcessor\Mock\HostProcessorServiceMock.cs" />
+    <Compile Include="HostProcessor\Mock\IHistoryManager.cs" />
+    <Compile Include="IATMachine.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="HostProcessor\Mock\CardBalanceInfo.cs" />
+    <Compile Include="HostProcessor\Struct\CardInfo.cs" />
+    <Compile Include="HostProcessor\Struct\Fee.cs" />
+    <Compile Include="Cash\Struct\Money.cs" />
+    <Compile Include="UnitInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
