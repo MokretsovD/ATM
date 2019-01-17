@@ -2,7 +2,7 @@
 namespace ATM
 {
     /// <summary>
-    /// Contains infora=marion about ATM
+    /// Contains information about ATM
     /// </summary>
     public struct UnitInfo
     {
